@@ -14,7 +14,7 @@ def first_word(s):
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, f'Здравствуйте, {message.from_user.first_name}.')
-    bot.reply_to(message, f'Напишите Ваш вопрос, и мы Вам поможем!. Пожалуйста, первым словом укажите адрес Вашей электронной почты, затем поставьте пробел,напишите номер Вашего мобильного телефона и вопрос')
+    bot.reply_to(message, f'Напишите Ваш вопрос, и мы Вам поможем! Пожалуйста, первым словом укажите адрес Вашей электронной почты, затем поставьте пробел,напишите номер Вашего мобильного телефона и вопрос')
 
 @bot.message_handler(content_types=['text'])
 def send_email(message):
@@ -46,6 +46,9 @@ def send_email(message):
         bot.reply_to(message, "Ошибка")
         
 bot.polling(none_stop=True)
+
+
+
 
 
 
