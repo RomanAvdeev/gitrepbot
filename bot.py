@@ -15,7 +15,7 @@ def first_word(s):
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, f'Здравствуйте, {message.from_user.first_name}.')
-    bot.reply_to(message, f'Напишите Ваш вопрос, и мы Вам поможем!\nПожалуйста, отправляйте заявку в следующем формате:\nАдрес Вашей почты<пробел>Ваш номер телефона<пробел>Текст обращения')
+    bot.reply_to(message, f'Напишите Ваш вопрос, и мы Вам поможем!\nПожалуйста, отправляйте заявку в следующем формате:\nАдрес почты<пробел>Номер телефона<пробел>Текст обращения')
 
 @bot.message_handler(content_types=['text'])
 def send_email(message):
