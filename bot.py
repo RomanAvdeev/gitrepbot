@@ -14,38 +14,42 @@ def first_word(s):
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, f'Здравствуйте, {message.from_user.first_name}.')
-    bot.reply_to(message, f'Напишите Ваш вопрос, и мы Вам поможем! Пожалуйста, первым словом укажите адрес Вашей электронной почты, затем поставьте пробел,напишите номер Вашего мобильного телефона и вопрос')
+    bot.reply_to(message, f'Напишите Ваш вопрос, и мы Вам поможем!. Пожалуйста, первым словом укажите адрес Вашей электронной почты, затем поставьте пробел,напишите номер Вашего мобильного телефона и вопрос')
 
 @bot.message_handler(content_types=['text'])
 def send_email(message):
     try:
         username = "{0.username}".format(message.from_user, bot.get_me())
         add = message.text;
-        for i in add:
-            if not i.isalpha() and i!=' ':
-                add = add.replace(i,'')      
-        toaddr = add.split()[0].strip()
-        fromaddr="roma.avdeyev@gmail.com"
-        password='RomariO2002LIT'
-        msg=MIMEMultipart()
-        msg['From']=fromaddr
-        msg['to']=toaddr
-        msg['Subject']="Отправитель: Telegram bot"
-        body="Message:Telegram bot \n\n" + message.text
-        msg.attach(MIMEText(body,'plain'))
+        toaddr = add.split()[0]
+        substr = '@'
+        if substr in toaddr:
+            fromaddr="roma.avdeyev@gmail.com"
+            password='RomariO2002LIT'
+            msg=MIMEMultipart()
+            msg['From']=fromaddr
+            msg['to']=toaddr
+            msg['Subject']="Отправитель: Telegram bot"
+            body="Message:Telegram bot \n" + "Заказчик:" + toaddr + "\n\n" +  message.text
+            msg.attach(MIMEText(body,'plain'))
         
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(fromaddr, password)
-        text = msg.as_string()
-        server.sendmail(toaddr,fromaddr, text)
-        server.quit()
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(fromaddr, password)
+            text = msg.as_string()
+            server.sendmail(toaddr,fromaddr, text)
+            server.quit()
         
-        bot.reply_to(message, "Заявка успешно отправлена")
+            bot.reply_to(message, "Заявка успешно отправлена")
+        else:
+            bot.reply_to(message, "Ошибка, введено неверное имя почтового ящика")
+
     except Exception:
-        bot.reply_to(message, "Ошибка")
+        bot.reply_to(message, "Ошибка, проверьте корректность отправляемого сообщения или воспользуйтесь формой подачи заявки на сайте")
         
 bot.polling(none_stop=True)
+
+
 
 
 
