@@ -28,6 +28,7 @@ def send_email(message):
         subdig1 = '8'
         if substr in toaddr:
             tel = add.split()[1]
+            bot.reply_to(message, "мы  почти внутри")
             if (subdig == tel[0]) or (subdig1 == tel[0]):
                 bot.reply_to(message, "мы внутри")
                 fromaddr="roma.avdeyev@gmail.com"
