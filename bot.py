@@ -29,6 +29,7 @@ def send_email(message):
         if substr in toaddr:
             tel = add.split()[1]
             if (subdig == tel[0]) or (subdig1 == tel[0]):
+                bot.reply_to(message, "мы внутри")
                 fromaddr="roma.avdeyev@gmail.com"
                 password='RomariO2002LIT'
                 msg=MIMEMultipart()
