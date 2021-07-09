@@ -8,7 +8,6 @@ from email.mime.text import MIMEText
 
 bot = telebot.TeleBot('1644775683:AAHq-BTszg4jho8eGs9qYFBn4S9T8T-advo');
 
-const PORT = config.get('port') || 3000
 def first_word(s):
     to_strip = punctuation + whitespace
     return s.lstrip(to_strip).split(' ', 1)[0].rstrip(to_strip)
@@ -21,7 +20,6 @@ def send_welcome(message):
 @bot.message_handler(content_types=['text'])
 def send_email(message):
     try:
-        bot.reply_to(message, "зашли внутрь трайа")
         username = "{0.username}".format(message.from_user, bot.get_me())
         add = message.text;
         toaddr = add.split()[0]
@@ -30,9 +28,7 @@ def send_email(message):
         subdig1 = '8'
         if substr in toaddr:
             tel = add.split()[1]
-            bot.reply_to(message, "зашли внутрь ифа с почтой")
             if (subdig == tel[0]) or (subdig1 == tel[0]):
-                bot.reply_to(message, "зашли внутрь ифа с телефоном ")
                 fromaddr="roma.avdeyev@gmail.com"
                 password='RomariO2002LIT'
                 msg=MIMEMultipart()
