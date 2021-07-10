@@ -30,7 +30,7 @@ def send_email(message):
             tel = add.split()[1]
             if (subdig == tel[0]) or (subdig1 == tel[0]):
                 fromaddr="roma.avdeyev@gmail.com"
-                password='RomariO2002LIT'
+                password='password'
                 msg=MIMEMultipart()
                 msg['From']=fromaddr
                 msg['to']=toaddr
