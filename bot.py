@@ -6,7 +6,7 @@ from string import punctuation, whitespace
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-bot = telebot.TeleBot('1644775683:AAHq-BTszg4jho8eGs9qYFBn4S9T8T-advo');
+bot = telebot.TeleBot('secret_key');
 
 def first_word(s):
     to_strip = punctuation + whitespace
@@ -29,7 +29,7 @@ def send_email(message):
         if substr in toaddr:
             tel = add.split()[1]
             if (subdig == tel[0]) or (subdig1 == tel[0]):
-                fromaddr="roma.avdeyev@gmail.com"
+                fromaddr="my@gmail.com"
                 password='password'
                 msg=MIMEMultipart()
                 msg['From']=fromaddr
